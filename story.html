@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page 1 of 1</title>
+    <style>
+      body {
+        background-color: #000000; /* Replace with the color of your choice */
+        font-family: "poppins", sans-serif;
+        font-size: 18px;
+      }
+      #typing-text {
+        color: #ffffff; /* Replace with the color of your choice */
+        font-family: "poppins", sans-serif;
+        font-size: 20px;
+        font-style: italic;
+        text-align: justify;
+      }
+      h1 {
+        color: #ffffff;
+      }
+
+      button {
+        margin: 10px;
+        border-radius: 6px;
+        border: 2px solid #ad77c9;
+        color: #a355ca;
+        padding: 10px 30px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 15px;
+        fill: #000000;
+      }
+
+      button:hover{
+        color: #8815c1;
+      }
+
+
+      @media only screen and (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+      p {
+        font-size: 16px;
+      }
+      button {
+        font-size: 14px;
+    }
+  }
+</style>
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>T.I.F.Y.B.M.</h1>
+      <button onclick="location.href='home.html'">Home</button>
+      <button id="skip-button">Fast Forward</button>
+    </header>
+    <main>
+      <p id="typing-text"></p>
+    </main>
+    <script>
+      const text = "A tragic story that nobody would’ve liked to hear and it’s probably best left unsaid. But, there’s this one thing that has been a constant in my mind, in my thoughts for longer than I’d like to remember. It is the fact that no matter how hard I try to grow out of, to move past, I always find myself justifying all the reasons that it is still, her. Whenever I hear a particular song, whenever I drink coffee, whenever I eat out at cafes, whenever I see someone that looks remotely similar, I’ll think of her, I’ll think of how her smile would light up my heart, I’ll think of what we could have been if we hadn’t fallen apart. I know it’s irrational but no matter how hard I try to be attracted to someone else, to fall for anyone else, I always find myself using her as a constant to which I measured perfection. And in my memory, she was perfect. Not just in appearance but also in character. It’s unhealthy, how much want her. How I refuse to see a future with anyone else but her. I am learning though, slowly, to accept that the person I have used to compare anyone to is no longer the person she is now. And I hate that because, in a world that is ever-changing, she was the one thing I wanted to stay the same. I know that what we once were can no longer be again and what could’ve been will forever be an illusion I carry for a lifetime. Still, I cannot convince myself, for everything that I do, for the better person it makes me, isn’t because of her. Perhaps that is the most precious thing she had ever given me, the will to become better, to strive higher, to succeed where others fail. And for that, I will always be indebted to her. The hold she has on me is stronger than she could’ve ever imagined. She wrote me a letter 4 years ago. I kept it. Closer to me than anything of sentimental value. And in case she was wondering, I still read it. To this day. I read it when I feel sad, when I feel alone, when I feel hopeless, and when I’m missing her. But I know, that the person who wrote me that letter is a different person now, the person who wrote that letter probably doesn’t feel the same way as she once did when she inked that paper. And while it hurts to accept that, it made me realize that the memory of this person was my greatest joy but also my endless pain. But that is the extent of it, she is no longer here. All I can do is hope, wish, and pray that someday, she would eventually reappear in my life. Many have asked me, why I can’t move on. And my answer would be that no one compares to her, it’s as simple as that. If only they could see her through my eyes, would they grasp the ineffable feelings I had and still have for her. I spent 4 years finding people to replace her and some nearly did. But my efforts and willpower notwithstanding, the only thing I ended up learning was that becoming attached to these people was only a result of the overwhelming love I have to give that was seeking an avenue to be directed somewhere, to someone. I guess this is the reason I feel lost, I have all this love for her bottled up, and not being able to express it has counterintuitively made me forget what it means to love someone else. What terrifies me is that I will never feel such an intense connection to someone again. What terrifies me is that I’ll never be able to love someone just as much as I did her. I question myself this ever so often - what happens then? But I will not blame her for that. Because this made me realize that she was my first-ever true love, the first person to ever make me feel this way, the first person my heart wept and broke over. And I’m probably still too young to say this but I am certain she is the love that comes once in a lifetime. So if I were to either relive my worst heartbreak or to forget that person entirely, it will never be the latter, not in this lifetime. So no matter how close we would be or how far apart we drift away, I will not regret meeting her. I will not regret falling for her. I will not regret the bittersweet memories shared with her. What I do regret is not telling her how hard I fell for her during the moments we were closer. What I do regret is not being mature enough to distance myself which inadvertently pushed her away. What I do regret is not being wise enough to articulate how much I cared for her. But none of this matters as much as it did then. Still, I will hold on to this hope that perhaps someday, time has reserved a moment for us to find each other again and until then, I’ll wait. So for the time being, as much as I want to, I’m not going to move on, I’m not going to stop thinking about her every day and everywhere I go, I’m not going to stop looking for her in a crowded room, I’m not going to stop loving her even if it means doing it alone. It’s a shitty story and I hate it. But it is one that impacted me in more ways than I can describe.";
+      const typingSpeed = 20; // milliseconds per character
+      let skipAnimation = false
+      let currentCharIndex = 0;
+      let timerId;
+
+      function typeNextCharacter() {
+        const typingText = document.getElementById("typing-text");
+        typingText.innerHTML = text.substring(0, currentCharIndex);
+        if (currentCharIndex < text.length && !skipAnimation) {
+          currentCharIndex++;
+          timerId = setTimeout(typeNextCharacter, typingSpeed);
+        }
+      }
+
+      function skipTyping() {
+        document.getElementById("typing-text").innerHTML = text;
+        clearTimeout(timerId);
+        skipAnimation = true;
+        }
+
+      document.getElementById("skip-button").addEventListener("click", skipTyping);
+
+      window.onload = typeNextCharacter;
+    </script>
+  </body>
+</html>
