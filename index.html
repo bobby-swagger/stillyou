@@ -19,15 +19,19 @@
         </nav>
 
         <div class = "text-box">
-            <h1>To the One Whom I'd Give the World For.</h1>
+            <h1>To the One <span class = "auto-input"></span></h1>
             <p>This is a story I wrote crying. One that I am not strong enough to tell in person.</p>
             <a href = "story.html">Page 1 of 1</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
-        var typed = new Typed
-    
+        var typed = new Typed(".auto-input", {
+            strings: ["I Fell Too Hard For.", "I Talk to God About.", "Worth Waiting For.", "Who Made Me Feel Alive.", "Whom I'd Give the World For."],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true
+        })
     </script>
 
 </body>    
