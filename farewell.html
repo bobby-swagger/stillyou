@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Conversation</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; 
+            color: #ffffff; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; 
+        }
+        .container {
+            max-width: 400px; 
+            width: 100%; 
+            padding: 0; 
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            margin-bottom: 10px; 
+            position: relative; 
+            width: 100%; 
+        }
+        .back-button {
+            position: absolute; 
+            left: 10px; 
+            top: 20px; 
+            background: none; 
+            border: none; 
+            color: #007bff; 
+            font-size: 20px;
+            cursor: pointer; 
+        }
+        .profile-pic {
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            border: 2px solid #007bff; 
+            margin-bottom: 5px; 
+        }
+        .header-text {
+            font-size: 14px;
+            text-align: center;
+        }
+        .chat-container {
+            background: #1e1e1e; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px; 
+            height: 300px; 
+            overflow-y: auto; 
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start; 
+            width: 100%;
+        }
+        
+        /* Media query for screens larger than 600px */
+        @media (min-width: 600px) {
+            .chat-container {
+                height: 400px; /* Height for larger screens */
+            }
+        }
+
+        /* Media query for screens larger than 900px */
+        @media (min-width: 900px) {
+            .chat-container {
+                height: 500px; /* Height for even larger screens */
+            }
+        }
+
+        .message {
+            margin: 5px 0; 
+            padding: 10px 15px;
+            border-radius: 15px; 
+            position: relative;
+            max-width: 80%;
+            word-wrap: break-word; 
+            font-size: 14px; 
+            white-space: pre-wrap; 
+        }
+        .sender {
+            background-color: #007bff;
+            align-self: flex-end; 
+            margin-left: auto; 
+        }
+        .receiver {
+            background-color: #444; 
+            align-self: flex-start;
+            margin-right: auto; 
+        }
+        .input-container {
+            display: flex;
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            width: 100%; 
+        }
+        .input-box {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 10px;
+            background-color: #333; 
+            color: #ffffff; 
+        }
+        .input-box::placeholder {
+            color: #aaa; 
+        }
+        .send-button {
+            padding: 10px 20px;
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .send-button:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <button class="back-button" onclick="location.href='index.html'"><</button> 
+            <img src="profile.jpg" alt="Profile Picture" class="profile-pic"> 
+            <span class="header-text">Mey</span> 
+        </div>
+
+        <div class="chat-container" id="chat-container">
+            <div class="message sender">How could I forget :/</div>
+            <div class="message receiver">Awwww it's okay! I'm leaving this evening dyy</div>
+            <div class="message receiver">See you when I'm back?</div>
+            <div class="message receiver">Are you working now?</div>
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="input-box" class="input-box" placeholder="Type your message..." />
+            <button class="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "Hello! Just wanna wish you the best in the UK! It’s your turn to live that international student life and I know you’re sure as hell going to do amazing. You’re going to experience the world in your own way; meet so many wonderful people who will bring you joy as you do them.",
+            "I might sound crazy saying this after all this time but as a form of closure I need to get it off my chest - I have finally gotten over you. I am finally able to see past the illusion of the perfect person I etched into my head, that was you. I have finally learnt to let go. I’m sorry it took me this long to accept the fact that life rarely goes the way you want it to and that mulling over what could’ve been is as futile as it gets. ",
+            "I guess what I’ve been meaning to say is,  thank you for coming into my life. And though it ended sad, it was and continues to be a very valuable lesson for me.",
+            "I don’t know when I’ll see you again and I really do hope we bump into each other some way or the other. If and when that happens, I hope we would look back and laugh at the times gone by. Because truthfully, you’re the most elegant and intelligent and beautiful person I’ve ever met and I enjoyed every chance I had talking to you and getting to know you.",
+            "This probably doesn’t mean as much to you as it did to me but as I close this chapter and turn the page, I hope you know that I’ll always be here for you, to lend you an ear or simply provide support. Just as you have written in a letter to me six years ago. I still care for you, just in a different way now :)",
+            "Now go on, don’t feel bad for me ;) Chase your dreams because I’m rooting for you every step of the way. I’m so, so proud of the person you’re growing into and I hope you’re proud of me too!",
+            "All the best Lim Bae Mey!",
+            "With love, Ethan."
+        ];
+
+        let currentMessageIndex = 0; 
+
+        // Set the initial message in the input box
+        document.getElementById('input-box').value = messages[currentMessageIndex];
+
+        function sendMessage() {
+            if (currentMessageIndex < messages.length) {
+                const chatContainer = document.getElementById('chat-container');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message sender'; 
+                
+                
+                const p = document.createElement('p'); 
+                p.textContent = messages[currentMessageIndex]; 
+                newMessage.appendChild(p); 
+
+                chatContainer.appendChild(newMessage);
+                currentMessageIndex++; // Move to the next message
+                
+                // Update the input box with the next message or clear it if done
+                if (currentMessageIndex < messages.length) {
+                    document.getElementById('input-box').value = messages[currentMessageIndex];
+                } else {
+                    document.getElementById('input-box').value = ''; // Clear input if no more messages
+                }
+
+                chatContainer.scrollTop = chatContainer.scrollHeight; 
+            } else {
+                alert("Till we meet again:)"); // Alert when no messages are left
+            }
+        }
+    </script>
+</body>
+</html>
