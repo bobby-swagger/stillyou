@@ -7,103 +7,116 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* Light text color */
+            background-color: #121212;
+            color: #ffffff;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* Center the content */
+            justify-content: center;
         }
         .container {
-            max-width: 400px; /* Maximum width for portrait phone size */
-            width: 100%; /* Full width for smaller screens */
-            padding: 0; /* No padding for container */
-            box-sizing: border-box; /* Include padding in width */
+            max-width: 400px;
+            width: 100%;
+            padding: 0;
+            box-sizing: border-box;
             display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            align-items: center; /* Center elements horizontally */
+            flex-direction: column;
+            align-items: center;
         }
         .profile-section {
             display: flex;
-            flex-direction: column; /* Stack profile picture and name vertically */
-            align-items: center; /* Center items */
+            flex-direction: column;
+            align-items: center;
             margin-top: 10px;
-            margin-bottom: 10px; /* Small space below profile section */
-            position: relative; /* Position relative for absolute positioning of back button */
-            width: 100%; /* Full width to allow back button on the left */
+            margin-bottom: 10px;
+            position: relative;
+            width: 100%;
         }
         .back-button {
-            position: absolute; /* Position absolute to place it to the left */
-            left: 10px; /* Adjust to place it next to the profile picture */
-            top: 20px; /* Align vertically with the center of the profile picture */
-            background: none; /* No background */
-            border: none; /* No border */
-            color: #007bff; /* Button color */
-            font-size: 20px; /* Back button font size */
-            cursor: pointer; /* Pointer cursor */
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            background: none;
+            border: none;
+            color: #007bff;
+            font-size: 20px;
+            cursor: pointer;
         }
         .profile-pic {
-            width: 50px; /* Profile picture size */
-            height: 50px; /* Profile picture size */
-            border-radius: 50%; /* Circular profile picture */
-            margin-bottom: 5px; /* Space below profile picture */
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 5px;
         }
         .header-text {
-            font-size: 14px; /* Larger font size for name */
-            text-align: center; /* Center the text */
+            font-size: 14px;
+            text-align: center;
         }
         .chat-container {
-            background: #1e1e1e; /* Darker chat background */
-            border-radius: 10px; /* Rounded corners */
+            background: #1e1e1e;
+            border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            padding: 10px; /* Adjusted padding */
-            height: 300px; /* Default height */
-            overflow-y: auto; /* Allow scrolling */
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
             display: flex;
-            flex-direction: column; /* Arrange messages vertically */
-            justify-content: flex-start; /* Align messages to the top */
-            width: 100%; /* Full width */
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
         }
-        
-        /* Media query for screens larger than 600px */
         @media (min-width: 600px) {
             .chat-container {
-                height: 400px; /* Height for larger screens */
+                height: 400px;
             }
         }
-
-        /* Media query for screens larger than 900px */
         @media (min-width: 900px) {
             .chat-container {
-                height: 500px; /* Height for even larger screens */
+                height: 500px;
             }
         }
-
         .message {
-            margin: 5px 0; /* Reduced margin */
+            margin: 5px 0;
             padding: 10px 15px;
-            border-radius: 15px; /* Slightly rounded corners for messages */
+            border-radius: 15px;
             position: relative;
             max-width: 80%;
-            word-wrap: break-word; /* Allow long words to break */
-            font-size: 14px; /* Set font size for messages */
-            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+            word-wrap: break-word;
+            font-size: 14px;
+            white-space: pre-wrap;
         }
         .sender {
-            background-color: #007bff; /* Sender message color */
-            align-self: flex-end; /* Align sender messages to the right */
-            margin-left: auto; /* Push to the right */
+            background-color: #007bff;
+            align-self: flex-end;
+            margin-left: auto;
         }
         .receiver {
-            background-color: #444; /* Receiver message color */
-            align-self: flex-start; /* Align receiver messages to the left */
-            margin-right: auto; /* Push to the left */
+            background-color: #444;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+        .not-delivered {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin: 5px 0;
+            align-self: flex-end;
+            max-width: 80%;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+        .not-delivered-text {
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 2px;
+            text-align: right;
+            align-self: flex-end;
         }
         .input-container {
             display: flex;
-            margin-top: 10px; /* Space above input container */
-            margin-bottom: 10px; /* Added margin below input container */
-            width: 100%; /* Full width */
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 100%;
         }
         .input-box {
             flex: 1;
@@ -111,31 +124,31 @@
             border: 1px solid #ccc;
             border-radius: 20px;
             margin-right: 10px;
-            background-color: #333; /* Dark input background */
-            color: #ffffff; /* Light text in input */
+            background-color: #333;
+            color: #ffffff;
         }
         .input-box::placeholder {
-            color: #aaa; /* Placeholder color */
+            color: #aaa;
         }
         .send-button {
             padding: 10px 20px;
-            background-color: #007bff; /* Button color */
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 20px;
             cursor: pointer;
         }
         .send-button:hover {
-            background-color: #0056b3; /* Darker shade on hover */
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="profile-section">
-            <button class="back-button" onclick="location.href='index.html'"><</button> <!-- Back button -->
-            <img src="profile.jpg" alt="Profile Picture" class="profile-pic"> <!-- Profile picture -->
-            <span class="header-text">Mey</span> <!-- Header text -->
+            <button class="back-button" onclick="location.href='index.html'"><</button>
+            <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+            <span class="header-text">Mey</span>
         </div>
 
         <div class="chat-container" id="chat-container">
@@ -154,44 +167,54 @@
     <script>
         const messages = [
             "Hello! Just wanna wish you the best in the UK! It’s your turn to live that international student life and I know you’re sure as hell going to do amazing. You’re going to experience the world in your own way; meet so many wonderful people who will bring you joy as you do them.",
-            "I might sound crazy saying this after all this time but as a form of closure I need to get it off my chest - I have finally gotten over you. I am finally able to see past the illusion of the perfect person I etched into my head, that was you. I have finally learnt to let go. I’m sorry it took me this long to accept the fact that life rarely goes the way you want it to and that mulling over what could’ve been is as futile as it gets. ",
-            "I guess what I’ve been meaning to say is,  thank you for coming into my life. And though it ended sad, it was and continues to be a very valuable lesson for me.",
+            "I might sound crazy saying this after all this time but as a form of closure I need to get it off my chest - I have finally gotten over you. I am finally able to see past the illusion of the perfect person I etched into my head, that was you. I have finally learnt to let go. I’m sorry it took me this long to accept the fact that life rarely goes the way you want it to and that mulling over what could’ve been is as futile as it gets.",
+            "I guess what I’ve been meaning to say is, thank you for coming into my life. And though it ended sad, it was and continues to be a very valuable lesson for me.",
             "I don’t know when I’ll see you again and I really do hope we bump into each other some way or the other. If and when that happens, I hope we would look back and laugh at the times gone by. Because truthfully, you’re the most elegant and intelligent and beautiful person I’ve ever met and I enjoyed every chance I had talking to you and getting to know you.",
             "This probably doesn’t mean as much to you as it did to me but as I close this chapter and turn the page, I hope you know that I’ll always be here for you, to lend you an ear or simply provide support. Just as you have written in a letter to me six years ago. I still care for you, just in a different way now :)",
             "Now go on, don’t feel bad for me ;) Chase your dreams because I’m rooting for you every step of the way. I’m so, so proud of the person you’re growing into and I hope you’re proud of me too!",
             "All the best Lim Bae Mey!",
-            "With love, Ethan."
+            "With love, Ethan.",
+            "I still think about you"
         ];
 
-        let currentMessageIndex = 0; // Track the current message to send
+        let currentMessageIndex = 0;
 
-        // Set the initial message in the input box
         document.getElementById('input-box').value = messages[currentMessageIndex];
 
         function sendMessage() {
+            const chatContainer = document.getElementById('chat-container');
+            
             if (currentMessageIndex < messages.length) {
-                const chatContainer = document.getElementById('chat-container');
-                const newMessage = document.createElement('div');
-                newMessage.className = 'message sender'; // Class for sender's message
+                const messageText = messages[currentMessageIndex];
                 
-                // Create a paragraph for the current message
-                const p = document.createElement('p'); 
-                p.textContent = messages[currentMessageIndex]; // Set the text content
-                newMessage.appendChild(p); // Append the paragraph to the message
+                if (messageText === "I say all these, but sometimes, the air gets heavy and I miss you when I breathe.") {
+                    const notDeliveredMessage = document.createElement('div');
+                    notDeliveredMessage.className = 'not-delivered';
+                    notDeliveredMessage.textContent = messageText;
+                    chatContainer.appendChild(notDeliveredMessage);
 
-                chatContainer.appendChild(newMessage);
-                currentMessageIndex++; // Move to the next message
+                    const notDeliveredText = document.createElement('div');
+                    notDeliveredText.className = 'not-delivered-text';
+                    notDeliveredText.textContent = "Not Delivered";
+                    chatContainer.appendChild(notDeliveredText);
+                } else {
+                    const message = document.createElement('div');
+                    message.className = 'message sender';
+                    message.textContent = messageText;
+                    chatContainer.appendChild(message);
+                }
+
+                currentMessageIndex++;
                 
-                // Update the input box with the next message or clear it if done
                 if (currentMessageIndex < messages.length) {
                     document.getElementById('input-box').value = messages[currentMessageIndex];
                 } else {
-                    document.getElementById('input-box').value = ''; // Clear input if no more messages
+                    document.getElementById('input-box').value = '';
                 }
 
-                chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+                chatContainer.scrollTop = chatContainer.scrollHeight;
             } else {
-                alert("No more messages to send!"); // Alert when no messages are left
+                alert("Till we meet again!");
             }
         }
     </script>
