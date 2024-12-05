@@ -4,9 +4,11 @@
     <title>Page 1 of 1</title>
     <style>
         body {
-            background-color: #000000; 
+            background-color: #000000; /* Background color */
             font-family: "aptos", sans-serif;
             font-size: 18px;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
         #typing-text {
             color: #ffffff; /* Text color */
@@ -14,13 +16,18 @@
             font-size: 20px;
             text-align: justify;
             line-height: 2.0;
+            padding: 0 20px; /* Add side padding for spacing */
+            margin: 0 auto; /* Center the content */
+            max-width: 900px; /* Limit the width of the text */
         }
         #typing-text p {
-            text-indent: 50px;
-            margin: 10px 0; 
+            text-indent: 50px; /* Indent for paragraphs */
+            margin: 10px 0; /* Space between paragraphs */
         }
         h1 {
             color: #ffffff;
+            margin: 10px 20px; /* Add margin for spacing */
+            padding: 0; /* Remove padding */
         }
         button {
             margin: 10px;
@@ -68,46 +75,46 @@
         "I guess this is the reason I feel lost, I have all this love for her bottled up, and not being able to express it has counterintuitively made me forget what it means to love someone else. What terrifies me is that I will never feel such an intense connection to someone again. What terrifies me is that I’ll never be able to love someone just as much as I did her. I question myself this ever so often - what happens then? Maybe the hardest part isn't letting go, but learning to start over with the knowledge of what it feels like to care for someone so deeply",
         "But I will not blame her for that. Because this made me realize that she was my first-ever true love, the first person to ever make me feel this way, the first person my heart wept and broke over. And I’m probably still too young to say this but I am certain she is the love that comes once in a lifetime. So if I were to either relive my worst heartbreak or to forget that person entirely, it will never be the latter, not in this lifetime. ",
         "No matter how close we would be or how far apart we drift away, I will not regret meeting her. I will not regret falling for her. I will not regret the bittersweet memories shared with her. What I do regret is not telling her how hard I fell for her during the moments we were closer. What I do regret is not being mature enough to distance myself which inadvertently pushed her away. What I do regret is not being wise enough to articulate how much I cared for her. But none of this matters as much as it did then. Still, I will hold on to this hope that perhaps someday, time has reserved a moment for us to find each other again and until then, I’ll wait. ",
-        "So for the time being, I will find the strength to push forward, I will learn to move on. But, I’m not going to stop thinking about her every day and everywhere I go, I’m not going to stop looking for her in a crowded room, I’m not going to stop loving her and caring for her even if it means doing it alone. ",
+        "So for the time being, I will find solace in the echoes of maybes and distant wishes. I’m not going to stop thinking about her every day and everywhere I go, I’m not going to stop looking for her in a crowded room, I’m not going to stop loving her and caring for her even if it means doing it alone. ",
         "It’s a shitty story and I hate it. But it is one that impacted me in more ways than I can describe."
       ];
       const typingSpeed = 20; // milliseconds per character
         let skipAnimation = false;
         let currentCharIndex = 0;
-        let currentParagraphIndex = 0; 
+        let currentParagraphIndex = 0; // Track the current paragraph
         let timerId;
 
         function typeNextCharacter() {
             const typingText = document.getElementById("typing-text");
 
-            
+            // Check if we need to create a new paragraph
             if (currentCharIndex === 0) {
-                const newParagraph = document.createElement("p"); 
-                typingText.appendChild(newParagraph); 
+                const newParagraph = document.createElement("p"); // Create a new <p> element
+                typingText.appendChild(newParagraph); // Append it to the container
             }
 
-            const currentParagraph = paragraphs[currentParagraphIndex];
-            const currentP = typingText.lastChild; 
+            const currentParagraph = paragraphs[currentParagraphIndex]; // Get the current paragraph
+            const currentP = typingText.lastChild; // Reference to the last <p> element
 
-        
+            // Append the current character to the last paragraph
             currentP.innerHTML += currentParagraph[currentCharIndex]; 
 
             if (currentCharIndex < currentParagraph.length - 1 && !skipAnimation) {
                 currentCharIndex++;
                 timerId = setTimeout(typeNextCharacter, typingSpeed);
             } else if (currentCharIndex >= currentParagraph.length - 1) {
-               
+                // Move to the next paragraph
                 currentParagraphIndex++;
-                currentCharIndex = 0; 
+                currentCharIndex = 0; // Reset character index for the next paragraph
                 if (currentParagraphIndex < paragraphs.length) {
-                    setTimeout(typeNextCharacter, typingSpeed * 10); 
+                    setTimeout(typeNextCharacter, typingSpeed * 10); // Delay before starting the next paragraph
                 }
             }
         }
 
         function skipTyping() {
             const typingText = document.getElementById("typing-text");
-            typingText.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join(''); 
+            typingText.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join(''); // Display all paragraphs with <p> tags
             clearTimeout(timerId);
             skipAnimation = true;
         }
